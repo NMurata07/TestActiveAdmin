@@ -1,0 +1,827 @@
+  [1m[36m (2.9ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL) [0m
+  [1m[35m (1.4ms)[0m  select sqlite_version(*)
+  [1m[36m (2.4ms)[0m  [1mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+Migrating to CreateAuthors (20180811064545)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.6ms)[0m  CREATE TABLE "authors" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "description" text, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20180811064545"]]
+  [1m[35m (2.2ms)[0m  commit transaction
+Migrating to CreateBooks (20180811064553)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.5ms)[0m  CREATE TABLE "books" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar, "isbn" varchar, "published_date" date, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20180811064553"]]
+  [1m[35m (2.0ms)[0m  commit transaction
+Migrating to CreateAuthorBooks (20180811064600)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.5ms)[0m  CREATE TABLE "author_books" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "author_id" integer, "book_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20180811064600"]]
+  [1m[35m (2.5ms)[0m  commit transaction
+  [1m[36mActiveRecord::SchemaMigration Load (1.0ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+
+
+Started GET "/admin" for ::1 at 2018-08-11 15:47:45 +0900
+  [1m[36mActiveRecord::SchemaMigration Load (1.3ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+
+ActiveRecord::PendingMigrationError (
+
+Migrations are pending. To resolve this issue, run:
+
+	bin/rake db:migrate RAILS_ENV=development
+
+):
+  activerecord (4.2.6) lib/active_record/migration.rb:392:in `check_pending!'
+  activerecord (4.2.6) lib/active_record/migration.rb:373:in `call'
+  actionpack (4.2.6) lib/action_dispatch/middleware/callbacks.rb:29:in `block in call'
+  activesupport (4.2.6) lib/active_support/callbacks.rb:88:in `__run_callbacks__'
+  activesupport (4.2.6) lib/active_support/callbacks.rb:778:in `_run_call_callbacks'
+  activesupport (4.2.6) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (4.2.6) lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+  actionpack (4.2.6) lib/action_dispatch/middleware/reloader.rb:73:in `call'
+  actionpack (4.2.6) lib/action_dispatch/middleware/remote_ip.rb:78:in `call'
+  actionpack (4.2.6) lib/action_dispatch/middleware/debug_exceptions.rb:17:in `call'
+  web-console (2.3.0) lib/web_console/middleware.rb:28:in `block in call'
+  web-console (2.3.0) lib/web_console/middleware.rb:18:in `catch'
+  web-console (2.3.0) lib/web_console/middleware.rb:18:in `call'
+  actionpack (4.2.6) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.2.6) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.6) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.6) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.6) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.6) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.6) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.2.6) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.6.10) lib/rack/methodoverride.rb:22:in `call'
+  rack (1.6.10) lib/rack/runtime.rb:18:in `call'
+  activesupport (4.2.6) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  rack (1.6.10) lib/rack/lock.rb:17:in `call'
+  actionpack (4.2.6) lib/action_dispatch/middleware/static.rb:120:in `call'
+  rack (1.6.10) lib/rack/sendfile.rb:113:in `call'
+  railties (4.2.6) lib/rails/engine.rb:518:in `call'
+  railties (4.2.6) lib/rails/application.rb:165:in `call'
+  rack (1.6.10) lib/rack/lock.rb:17:in `call'
+  rack (1.6.10) lib/rack/content_length.rb:15:in `call'
+  rack (1.6.10) lib/rack/handler/webrick.rb:88:in `service'
+  /Users/nobuharumurata/.rbenv/versions/2.3.1/lib/ruby/2.3.0/webrick/httpserver.rb:140:in `service'
+  /Users/nobuharumurata/.rbenv/versions/2.3.1/lib/ruby/2.3.0/webrick/httpserver.rb:96:in `run'
+  /Users/nobuharumurata/.rbenv/versions/2.3.1/lib/ruby/2.3.0/webrick/server.rb:296:in `block in start_thread'
+
+
+  Rendered /Users/nobuharumurata/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_source.erb (3.5ms)
+  Rendered /Users/nobuharumurata/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.2ms)
+  Rendered /Users/nobuharumurata/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (2.5ms)
+  Rendered /Users/nobuharumurata/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (163.3ms)
+  Rendered /Users/nobuharumurata/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (0.6ms)
+  Rendered /Users/nobuharumurata/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.6ms)
+  Rendered /Users/nobuharumurata/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.4ms)
+  Rendered /Users/nobuharumurata/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.8ms)
+  Rendered /Users/nobuharumurata/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (152.1ms)
+  Rendered /Users/nobuharumurata/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (0.5ms)
+  Rendered /Users/nobuharumurata/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.4ms)
+  Rendered /Users/nobuharumurata/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (352.0ms)
+  [1m[36mActiveRecord::SchemaMigration Load (1.3ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to CreateActiveAdminComments (20180811064723)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.5ms)[0m  [1mCREATE TABLE "active_admin_comments" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "namespace" varchar, "body" text, "resource_id" integer, "resource_type" varchar, "author_id" integer, "author_type" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (0.1ms)[0m  select sqlite_version(*)
+  [1m[36m (0.1ms)[0m  [1mCREATE  INDEX "index_active_admin_comments_on_namespace" ON "active_admin_comments" ("namespace")[0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_active_admin_comments_on_namespace' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_active_admin_comments_on_namespace' AND type='index'
+
+  [1m[36m (0.1ms)[0m  [1mCREATE  INDEX "index_active_admin_comments_on_author_type_and_author_id" ON "active_admin_comments" ("author_type", "author_id")[0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_active_admin_comments_on_author_type_and_author_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_active_admin_comments_on_author_type_and_author_id' AND type='index'
+
+  [1m[36m (0.1ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_active_admin_comments_on_namespace' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_active_admin_comments_on_namespace' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m  CREATE  INDEX "index_active_admin_comments_on_resource_type_and_resource_id" ON "active_admin_comments" ("resource_type", "resource_id")
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20180811064723"]]
+  [1m[35m (2.1ms)[0m  commit transaction
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.5ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_active_admin_comments_on_resource_type_and_resource_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_active_admin_comments_on_resource_type_and_resource_id' AND type='index'
+
+  [1m[36m (0.3ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_active_admin_comments_on_author_type_and_author_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_active_admin_comments_on_author_type_and_author_id' AND type='index'
+[0m
+  [1m[35m (0.2ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_active_admin_comments_on_namespace' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_active_admin_comments_on_namespace' AND type='index'
+
+
+
+Started GET "/admin" for ::1 at 2018-08-11 15:48:24 +0900
+  [1m[36mActiveRecord::SchemaMigration Load (1.3ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by Admin::DashboardController#index as HTML
+  Rendered /Users/nobuharumurata/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/bundler/gems/active_admin-c301ab126b3f/app/views/active_admin/page/index.html.arb (10730.7ms)
+Completed 200 OK in 10782ms (Views: 10760.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/active_admin.self-619450aed0521697791e8bb346218c0720f2272e407c3cbb2b6599c8c0acbec0.css?body=1" for ::1 at 2018-08-11 15:48:35 +0900
+
+
+Started GET "/assets/jquery3.self-5af507e253c37e9c9dcf65064fc3f93795e6e28012780579975a4d709f4074ad.js?body=1" for ::1 at 2018-08-11 15:48:35 +0900
+
+
+Started GET "/assets/jquery-ui/widgets/datepicker.self-2af0dec09da99d687c31fc224e940687a4eb3694e7b38b0871bba475cad86120.js?body=1" for ::1 at 2018-08-11 15:48:35 +0900
+
+
+Started GET "/assets/jquery-ui/version.self-c8e3d1203da26ea7efdf83c1eabb3f0ba55cb68e463f5ccf0d77bd15ce6a8e61.js?body=1" for ::1 at 2018-08-11 15:48:35 +0900
+
+
+Started GET "/assets/jquery-ui/widget.self-fca20bcec06d192f97cffa6e734e24360e227237b8ae7d7e7e60754df7d5444f.js?body=1" for ::1 at 2018-08-11 15:48:35 +0900
+
+
+Started GET "/assets/jquery-ui/keycode.self-ad63cd20acf49dd333bbbc537454d7d475bd610eb5b88de0dca009f0c3d314b1.js?body=1" for ::1 at 2018-08-11 15:48:35 +0900
+
+
+Started GET "/assets/jquery-ui/widgets/controlgroup.self-0b7409f97114a33de116bd5429e9df199cbdea3f276d8bd725c4c2c60f244711.js?body=1" for ::1 at 2018-08-11 15:48:35 +0900
+
+
+Started GET "/assets/jquery-ui/escape-selector.self-43e4d61501e4ffb1ecba387affbae1eb3e1c863ab0b0e71897851cddd246e50e.js?body=1" for ::1 at 2018-08-11 15:48:35 +0900
+
+
+Started GET "/assets/jquery-ui/form.self-61347e437e2f29dbf003e5a02a3ff3662ace446c9ad4609f7e2409146a573c95.js?body=1" for ::1 at 2018-08-11 15:48:35 +0900
+
+
+Started GET "/assets/jquery-ui/form-reset-mixin.self-19d29988ce83cd72f9b5c9f28cb59a4ed2906e825605cef626bfb0ddfd76e19f.js?body=1" for ::1 at 2018-08-11 15:48:35 +0900
+
+
+Started GET "/assets/jquery-ui/labels.self-e2666f4057d3df5b54185d383b3f5e56d851c193b00df9c9795febb46e8ec4b1.js?body=1" for ::1 at 2018-08-11 15:48:35 +0900
+
+
+Started GET "/assets/jquery-ui/widgets/checkboxradio.self-aa5f9a257adfc9b411ff9d0414a1ebac2356b14c6cb13c3948feba44e56f050e.js?body=1" for ::1 at 2018-08-11 15:48:35 +0900
+
+
+Started GET "/assets/jquery-ui/widgets/button.self-659b51f6fb5303f90ed8cf551509063770a50168a15795ba834b08f8bf2e0ce0.js?body=1" for ::1 at 2018-08-11 15:48:35 +0900
+
+
+Started GET "/assets/jquery-ui/ie.self-163eb039dcb1e0c3471b7d91386eabb8753da6906e84824c019f9ff56bdb83a6.js?body=1" for ::1 at 2018-08-11 15:48:35 +0900
+
+
+Started GET "/assets/jquery-ui/widgets/mouse.self-f0790a202dcf54fab051e71b042335d5346f9cceb0f645223c1dab93f349a04b.js?body=1" for ::1 at 2018-08-11 15:48:35 +0900
+
+
+Started GET "/assets/jquery-ui/data.self-2067c82e6fe39a9cba5623206a5dc28d5c60d26b95cd100855b78cacf72865b8.js?body=1" for ::1 at 2018-08-11 15:48:35 +0900
+
+
+Started GET "/assets/jquery-ui/plugin.self-d8f576c8e073ca51f095505f47bd09d306b875404cd90afcbb6338287cfb0247.js?body=1" for ::1 at 2018-08-11 15:48:35 +0900
+
+
+Started GET "/assets/jquery-ui/safe-active-element.self-a1f1a1a7dae3269ce03f6fffb2dcc9b4a7490f5d546c65d54417bec3be24b668.js?body=1" for ::1 at 2018-08-11 15:48:35 +0900
+
+
+Started GET "/assets/jquery-ui/safe-blur.self-2cc24c46132d51c7724f6371154241b0a81c9bae5d5681d8f62b01ce46236726.js?body=1" for ::1 at 2018-08-11 15:48:35 +0900
+
+
+Started GET "/assets/jquery-ui/scroll-parent.self-38e26a71a450a29fb63425e8f589a7046862f927eb0a1dbf6a6c44da05196d2e.js?body=1" for ::1 at 2018-08-11 15:48:35 +0900
+
+
+Started GET "/assets/jquery-ui/widgets/draggable.self-42c3eda0b49f105628cea7580fe38c7ed77467cee384bb2c4e095a2bd0a172e6.js?body=1" for ::1 at 2018-08-11 15:48:35 +0900
+
+
+Started GET "/assets/jquery-ui/disable-selection.self-5675f71f2fbbc6857ea700ba843af748b50dbc0150cc87932a7d05ec016bb659.js?body=1" for ::1 at 2018-08-11 15:48:35 +0900
+
+
+Started GET "/assets/jquery-ui/widgets/resizable.self-1a46c2f5b876918e02bf979080e56f57846590cd880721bca5058e84f7f60bae.js?body=1" for ::1 at 2018-08-11 15:48:36 +0900
+
+
+Started GET "/assets/jquery-ui/focusable.self-426e99e67d1f1bd4cb444fd878ee63a6de1f5d1d61451e43022c86214b9eec64.js?body=1" for ::1 at 2018-08-11 15:48:36 +0900
+
+
+Started GET "/assets/jquery-ui/position.self-1b49c8c521e67a4a88bfdad6b4d944d33686d25009a0e40a1e170acdd7b6962a.js?body=1" for ::1 at 2018-08-11 15:48:36 +0900
+
+
+Started GET "/assets/jquery-ui/tabbable.self-f3f62ceed772d3a325cebd6a03221f8a8cb02c6150f4feba738c6525a2953690.js?body=1" for ::1 at 2018-08-11 15:48:36 +0900
+
+
+Started GET "/assets/jquery-ui/unique-id.self-66e85ac85cd0b6b8b1bb89369fc65f608f716869dc0930862a8d421a57a9580a.js?body=1" for ::1 at 2018-08-11 15:48:36 +0900
+
+
+Started GET "/assets/jquery-ui/widgets/dialog.self-2bd687f9580c0be4213c50b4bb1211c28ceedb045eba954e63d40bfbb4d1affd.js?body=1" for ::1 at 2018-08-11 15:48:36 +0900
+
+
+Started GET "/assets/jquery-ui/widgets/sortable.self-6e5e1f07a29b5a89ec1d359363d2800904e3ae548a38ab2f8eded36746d1adbe.js?body=1" for ::1 at 2018-08-11 15:48:36 +0900
+
+
+Started GET "/assets/jquery-ui/widgets/tabs.self-b7f60535e992224ca66c3f11dc943eba9ef42a9605241e27b9dba24c7efb287e.js?body=1" for ::1 at 2018-08-11 15:48:36 +0900
+
+
+Started GET "/assets/active_admin/base.self-cdde0d466bfd8177bbfc3b8fd2df1e8d835530ff5256253097f34c6e5bb1e24a.js?body=1" for ::1 at 2018-08-11 15:48:36 +0900
+
+
+Started GET "/assets/active_admin/ext/jquery.self-ae1efb8ed7902a7f7f8d8fcbbb99282033f11e475561909230e217e1b775051a.js?body=1" for ::1 at 2018-08-11 15:48:36 +0900
+
+
+Started GET "/assets/active_admin/ext/jquery-ui.self-45333a65ddfe1ff71381b2d58c2d4dd73d131e134a1f523664a08fdf5c15c20a.js?body=1" for ::1 at 2018-08-11 15:48:36 +0900
+
+
+Started GET "/assets/active_admin/lib/active_admin.self-ee6dd320b07a50176b470a92a99f5f59d0f4e2b2803a9d65fe7d6746cdf71bc1.js?body=1" for ::1 at 2018-08-11 15:48:36 +0900
+
+
+Started GET "/assets/active_admin/lib/batch_actions.self-998c5bd2f2c3f09d3641abe4f594e0f2bf7b0779bb19e6da0036ea3918997810.js?body=1" for ::1 at 2018-08-11 15:48:36 +0900
+
+
+Started GET "/assets/active_admin/lib/dropdown-menu.self-de3391f920f80015b62345768d12b415ef1d72fbc98d00c99e7be670567f7867.js?body=1" for ::1 at 2018-08-11 15:48:36 +0900
+
+
+Started GET "/assets/active_admin/lib/has_many.self-446c9b9bd27b1aa5d290e05d59bdd0ae4eee5141028d015114f42dc7536391d9.js?body=1" for ::1 at 2018-08-11 15:48:36 +0900
+
+
+Started GET "/assets/active_admin/lib/modal_dialog.self-7b22a1856e3d3b830c09682312096e9a564a7f4a9b7f28ba02c6a781aeed4a04.js?body=1" for ::1 at 2018-08-11 15:48:36 +0900
+
+
+Started GET "/assets/active_admin/lib/per_page.self-696cdc4b18a2d48202ec0c7b156a9d9eb2d85265a49cd849fec41788b90a9dd4.js?body=1" for ::1 at 2018-08-11 15:48:36 +0900
+
+
+Started GET "/assets/active_admin/lib/checkbox-toggler.self-873d2c047db1f395e84a74ebfbff8cad31d4fc8ee0d004567e9f5014f03f6515.js?body=1" for ::1 at 2018-08-11 15:48:36 +0900
+
+
+Started GET "/assets/active_admin/lib/table-checkbox-toggler.self-50e6f93dffa0e2d16a233e962a09b800cea0592827afebde179313406b7527d2.js?body=1" for ::1 at 2018-08-11 15:48:36 +0900
+
+
+Started GET "/assets/active_admin/initializers/datepicker.self-172a9282361b295fe3310a48bb28dbe77bee319c792520c87f73f7008aeec684.js?body=1" for ::1 at 2018-08-11 15:48:36 +0900
+
+
+Started GET "/assets/active_admin/initializers/filters.self-5793b83192570303a130f19fce66e8b60ae7fd887f5bcca408aec407c32729c5.js?body=1" for ::1 at 2018-08-11 15:48:36 +0900
+
+
+Started GET "/assets/active_admin/initializers/tabs.self-5f37cede19f91addb4997338a3d854ed2441521f5b7ed73493b8e0bdca41e03b.js?body=1" for ::1 at 2018-08-11 15:48:36 +0900
+
+
+Started GET "/assets/active_admin.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.js?body=1" for ::1 at 2018-08-11 15:48:36 +0900
+
+
+Started GET "/assets/active_admin/print.self-df1c1e945831e8d8167fa55a0245b20d16a32e0c1d13e2c354d6e55c0e06c921.css?body=1" for ::1 at 2018-08-11 15:48:36 +0900
+
+
+Started GET "/admin" for ::1 at 2018-08-11 15:54:18 +0900
+  [1m[36mActiveRecord::SchemaMigration Load (1.7ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by Admin::DashboardController#index as HTML
+  Rendered /Users/nobuharumurata/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/bundler/gems/active_admin-c301ab126b3f/app/views/active_admin/page/index.html.arb (1189.6ms)
+Completed 200 OK in 1237ms (Views: 1217.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/admin/author_books" for ::1 at 2018-08-11 15:54:28 +0900
+Processing by Admin::AuthorBooksController#index as HTML
+  [1m[35m (1.4ms)[0m  SELECT COUNT(count_column) FROM (SELECT  1 AS count_column FROM "author_books" LIMIT 30 OFFSET 0) subquery_for_count
+  Rendered /Users/nobuharumurata/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/bundler/gems/active_admin-c301ab126b3f/app/views/active_admin/resource/index.html.arb (283.6ms)
+Completed 200 OK in 321ms (Views: 307.4ms | ActiveRecord: 1.8ms)
+
+
+Started GET "/admin/authors" for ::1 at 2018-08-11 15:54:36 +0900
+Processing by Admin::AuthorsController#index as HTML
+  [1m[36m (1.3ms)[0m  [1mSELECT COUNT(count_column) FROM (SELECT  1 AS count_column FROM "authors" LIMIT 30 OFFSET 0) subquery_for_count[0m
+  Rendered /Users/nobuharumurata/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/bundler/gems/active_admin-c301ab126b3f/app/views/active_admin/resource/index.html.arb (192.6ms)
+Completed 200 OK in 214ms (Views: 209.5ms | ActiveRecord: 1.6ms)
+
+
+Started GET "/admin/books" for ::1 at 2018-08-11 15:54:39 +0900
+Processing by Admin::BooksController#index as HTML
+  Rendered /Users/nobuharumurata/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/bundler/gems/active_admin-c301ab126b3f/app/views/active_admin/resource/index.html.arb (181.4ms)
+Completed 500 Internal Server Error in 201ms (ActiveRecord: 0.4ms)
+
+ActionView::Template::Error (undefined method `chain' for nil:NilClass):
+    1: insert_tag renderer_for(:index)
+  activerecord (4.2.6) lib/active_record/reflection.rb:709:in `chain'
+  /Users/nobuharumurata/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/bundler/gems/active_admin-c301ab126b3f/lib/active_admin/filters/resource_extension.rb:129:in `block in default_association_filters'
+  /Users/nobuharumurata/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/bundler/gems/active_admin-c301ab126b3f/lib/active_admin/filters/resource_extension.rb:129:in `reject!'
+  /Users/nobuharumurata/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/bundler/gems/active_admin-c301ab126b3f/lib/active_admin/filters/resource_extension.rb:129:in `default_association_filters'
+  /Users/nobuharumurata/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/bundler/gems/active_admin-c301ab126b3f/lib/active_admin/filters/resource_extension.rb:109:in `default_filters'
+  /Users/nobuharumurata/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/bundler/gems/active_admin-c301ab126b3f/lib/active_admin/filters/resource_extension.rb:94:in `filter_lookup'
+  /Users/nobuharumurata/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/bundler/gems/active_admin-c301ab126b3f/lib/active_admin/filters/resource_extension.rb:23:in `filters'
+  /Users/nobuharumurata/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/bundler/gems/active_admin-c301ab126b3f/lib/active_admin/filters/resource_extension.rb:143:in `block in filters_sidebar_section'
+  /Users/nobuharumurata/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/bundler/gems/active_admin-c301ab126b3f/lib/active_admin/helpers/optional_display.rb:25:in `instance_exec'
+  /Users/nobuharumurata/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/bundler/gems/active_admin-c301ab126b3f/lib/active_admin/helpers/optional_display.rb:25:in `display_on?'
+  /Users/nobuharumurata/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/bundler/gems/active_admin-c301ab126b3f/lib/active_admin/resource/sidebars.rb:17:in `block in sidebar_sections_for'
+  /Users/nobuharumurata/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/bundler/gems/active_admin-c301ab126b3f/lib/active_admin/resource/sidebars.rb:17:in `select'
+  /Users/nobuharumurata/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/bundler/gems/active_admin-c301ab126b3f/lib/active_admin/resource/sidebars.rb:17:in `sidebar_sections_for'
+  /Users/nobuharumurata/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/bundler/gems/active_admin-c301ab126b3f/lib/active_admin/views/pages/base.rb:103:in `sidebar_sections_for_action'
+  /Users/nobuharumurata/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/bundler/gems/active_admin-c301ab126b3f/lib/active_admin/views/pages/base.rb:118:in `skip_sidebar?'
+  /Users/nobuharumurata/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/bundler/gems/active_admin-c301ab126b3f/lib/active_admin/views/pages/base.rb:78:in `build_page_content'
+  /Users/nobuharumurata/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/bundler/gems/active_admin-c301ab126b3f/lib/active_admin/views/pages/base.rb:55:in `block (2 levels) in build_page'
+  arbre (1.1.1) lib/arbre/element/builder_methods.rb:31:in `block in build_tag'
+  arbre (1.1.1) lib/arbre/context.rb:92:in `with_current_arbre_element'
+  arbre (1.1.1) lib/arbre/element/builder_methods.rb:49:in `with_current_arbre_element'
+  arbre (1.1.1) lib/arbre/element/builder_methods.rb:26:in `build_tag'
+  arbre (1.1.1) lib/arbre/element/builder_methods.rb:39:in `insert_tag'
+  arbre (1.1.1) lib/arbre/element/builder_methods.rb:14:in `div'
+  /Users/nobuharumurata/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/bundler/gems/active_admin-c301ab126b3f/lib/active_admin/views/pages/base.rb:51:in `block in build_page'
+  arbre (1.1.1) lib/arbre/context.rb:92:in `with_current_arbre_element'
+  arbre (1.1.1) lib/arbre/element/builder_methods.rb:49:in `with_current_arbre_element'
+  /Users/nobuharumurata/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/bundler/gems/active_admin-c301ab126b3f/lib/active_admin/views/pages/base.rb:50:in `build_page'
+  /Users/nobuharumurata/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/bundler/gems/active_admin-c301ab126b3f/lib/active_admin/views/pages/base.rb:9:in `build'
+  arbre (1.1.1) lib/arbre/element/builder_methods.rb:30:in `block in build_tag'
+  arbre (1.1.1) lib/arbre/context.rb:92:in `with_current_arbre_element'
+  arbre (1.1.1) lib/arbre/element/builder_methods.rb:26:in `build_tag'
+  arbre (1.1.1) lib/arbre/element/builder_methods.rb:39:in `insert_tag'
+  /Users/nobuharumurata/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/bundler/gems/active_admin-c301ab126b3f/app/views/active_admin/resource/index.html.arb:2:in `block in ___sers_nobuharumurata__rbenv_versions_______lib_ruby_gems_______bundler_gems_active_admin_c___ab___b_f_app_views_active_admin_resource_index_html_arb__3640392517493965313_70174788014280'
+  arbre (1.1.1) lib/arbre/context.rb:45:in `instance_eval'
+  arbre (1.1.1) lib/arbre/context.rb:45:in `initialize'
+  /Users/nobuharumurata/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/bundler/gems/active_admin-c301ab126b3f/app/views/active_admin/resource/index.html.arb:1:in `new'
+  /Users/nobuharumurata/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/bundler/gems/active_admin-c301ab126b3f/app/views/active_admin/resource/index.html.arb:1:in `___sers_nobuharumurata__rbenv_versions_______lib_ruby_gems_______bundler_gems_active_admin_c___ab___b_f_app_views_active_admin_resource_index_html_arb__3640392517493965313_70174788014280'
+  actionview (4.2.6) lib/action_view/template.rb:145:in `block in render'
+  activesupport (4.2.6) lib/active_support/notifications.rb:166:in `instrument'
+  actionview (4.2.6) lib/action_view/template.rb:333:in `instrument'
+  actionview (4.2.6) lib/action_view/template.rb:143:in `render'
+  actionview (4.2.6) lib/action_view/renderer/template_renderer.rb:54:in `block (2 levels) in render_template'
+  actionview (4.2.6) lib/action_view/renderer/abstract_renderer.rb:39:in `block in instrument'
+  activesupport (4.2.6) lib/active_support/notifications.rb:164:in `block in instrument'
+  activesupport (4.2.6) lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+  activesupport (4.2.6) lib/active_support/notifications.rb:164:in `instrument'
+  actionview (4.2.6) lib/action_view/renderer/abstract_renderer.rb:39:in `instrument'
+  actionview (4.2.6) lib/action_view/renderer/template_renderer.rb:53:in `block in render_template'
+  actionview (4.2.6) lib/action_view/renderer/template_renderer.rb:61:in `render_with_layout'
+  actionview (4.2.6) lib/action_view/renderer/template_renderer.rb:52:in `render_template'
+  actionview (4.2.6) lib/action_view/renderer/template_renderer.rb:14:in `render'
+  actionview (4.2.6) lib/action_view/renderer/renderer.rb:46:in `render_template'
+  actionview (4.2.6) lib/action_view/renderer/renderer.rb:27:in `render'
+  actionview (4.2.6) lib/action_view/rendering.rb:100:in `_render_template'
+  actionpack (4.2.6) lib/action_controller/metal/streaming.rb:217:in `_render_template'
+  actionview (4.2.6) lib/action_view/rendering.rb:83:in `render_to_body'
+  actionpack (4.2.6) lib/action_controller/metal/rendering.rb:32:in `render_to_body'
+  actionpack (4.2.6) lib/action_controller/metal/renderers.rb:37:in `render_to_body'
+  actionpack (4.2.6) lib/abstract_controller/rendering.rb:25:in `render'
+  actionpack (4.2.6) lib/action_controller/metal/rendering.rb:16:in `render'
+  actionpack (4.2.6) lib/action_controller/metal/instrumentation.rb:44:in `block (2 levels) in render'
+  activesupport (4.2.6) lib/active_support/core_ext/benchmark.rb:12:in `block in ms'
+  /Users/nobuharumurata/.rbenv/versions/2.3.1/lib/ruby/2.3.0/benchmark.rb:308:in `realtime'
+  activesupport (4.2.6) lib/active_support/core_ext/benchmark.rb:12:in `ms'
+  actionpack (4.2.6) lib/action_controller/metal/instrumentation.rb:44:in `block in render'
+  actionpack (4.2.6) lib/action_controller/metal/instrumentation.rb:87:in `cleanup_view_runtime'
+  activerecord (4.2.6) lib/active_record/railties/controller_runtime.rb:25:in `cleanup_view_runtime'
+  actionpack (4.2.6) lib/action_controller/metal/instrumentation.rb:43:in `render'
+  responders (2.4.0) lib/action_controller/responder.rb:238:in `default_render'
+  responders (2.4.0) lib/action_controller/responder.rb:170:in `to_html'
+  responders (2.4.0) lib/responders/flash_responder.rb:107:in `to_html'
+  responders (2.4.0) lib/action_controller/responder.rb:163:in `respond'
+  responders (2.4.0) lib/action_controller/responder.rb:156:in `call'
+  responders (2.4.0) lib/action_controller/respond_with.rb:211:in `respond_with'
+  inherited_resources (1.9.0) lib/inherited_resources/actions.rb:7:in `index'
+  /Users/nobuharumurata/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/bundler/gems/active_admin-c301ab126b3f/lib/active_admin/resource_controller/streaming.rb:12:in `index'
+  actionpack (4.2.6) lib/action_controller/metal/implicit_render.rb:4:in `send_action'
+  actionpack (4.2.6) lib/abstract_controller/base.rb:198:in `process_action'
+  actionpack (4.2.6) lib/action_controller/metal/rendering.rb:10:in `process_action'
+  actionpack (4.2.6) lib/abstract_controller/callbacks.rb:20:in `block in process_action'
+  activesupport (4.2.6) lib/active_support/callbacks.rb:117:in `call'
+  activesupport (4.2.6) lib/active_support/callbacks.rb:555:in `block (2 levels) in compile'
+  activesupport (4.2.6) lib/active_support/callbacks.rb:505:in `call'
+  activesupport (4.2.6) lib/active_support/callbacks.rb:92:in `__run_callbacks__'
+  activesupport (4.2.6) lib/active_support/callbacks.rb:778:in `_run_process_action_callbacks'
+  activesupport (4.2.6) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (4.2.6) lib/abstract_controller/callbacks.rb:19:in `process_action'
+  actionpack (4.2.6) lib/action_controller/metal/rescue.rb:29:in `process_action'
+  actionpack (4.2.6) lib/action_controller/metal/instrumentation.rb:32:in `block in process_action'
+  activesupport (4.2.6) lib/active_support/notifications.rb:164:in `block in instrument'
+  activesupport (4.2.6) lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+  activesupport (4.2.6) lib/active_support/notifications.rb:164:in `instrument'
+  actionpack (4.2.6) lib/action_controller/metal/instrumentation.rb:30:in `process_action'
+  actionpack (4.2.6) lib/action_controller/metal/params_wrapper.rb:250:in `process_action'
+  activerecord (4.2.6) lib/active_record/railties/controller_runtime.rb:18:in `process_action'
+  actionpack (4.2.6) lib/abstract_controller/base.rb:137:in `process'
+  actionview (4.2.6) lib/action_view/rendering.rb:30:in `process'
+  actionpack (4.2.6) lib/action_controller/metal.rb:196:in `dispatch'
+  actionpack (4.2.6) lib/action_controller/metal/rack_delegation.rb:13:in `dispatch'
+  actionpack (4.2.6) lib/action_controller/metal.rb:237:in `block in action'
+  actionpack (4.2.6) lib/action_dispatch/routing/route_set.rb:74:in `dispatch'
+  actionpack (4.2.6) lib/action_dispatch/routing/route_set.rb:43:in `serve'
+  actionpack (4.2.6) lib/action_dispatch/journey/router.rb:43:in `block in serve'
+  actionpack (4.2.6) lib/action_dispatch/journey/router.rb:30:in `each'
+  actionpack (4.2.6) lib/action_dispatch/journey/router.rb:30:in `serve'
+  actionpack (4.2.6) lib/action_dispatch/routing/route_set.rb:817:in `call'
+  rack (1.6.10) lib/rack/etag.rb:24:in `call'
+  rack (1.6.10) lib/rack/conditionalget.rb:25:in `call'
+  rack (1.6.10) lib/rack/head.rb:13:in `call'
+  actionpack (4.2.6) lib/action_dispatch/middleware/params_parser.rb:27:in `call'
+  actionpack (4.2.6) lib/action_dispatch/middleware/flash.rb:260:in `call'
+  rack (1.6.10) lib/rack/session/abstract/id.rb:225:in `context'
+  rack (1.6.10) lib/rack/session/abstract/id.rb:220:in `call'
+  actionpack (4.2.6) lib/action_dispatch/middleware/cookies.rb:560:in `call'
+  activerecord (4.2.6) lib/active_record/query_cache.rb:36:in `call'
+  activerecord (4.2.6) lib/active_record/connection_adapters/abstract/connection_pool.rb:653:in `call'
+  activerecord (4.2.6) lib/active_record/migration.rb:377:in `call'
+  actionpack (4.2.6) lib/action_dispatch/middleware/callbacks.rb:29:in `block in call'
+  activesupport (4.2.6) lib/active_support/callbacks.rb:88:in `__run_callbacks__'
+  activesupport (4.2.6) lib/active_support/callbacks.rb:778:in `_run_call_callbacks'
+  activesupport (4.2.6) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (4.2.6) lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+  actionpack (4.2.6) lib/action_dispatch/middleware/reloader.rb:73:in `call'
+  actionpack (4.2.6) lib/action_dispatch/middleware/remote_ip.rb:78:in `call'
+  actionpack (4.2.6) lib/action_dispatch/middleware/debug_exceptions.rb:17:in `call'
+  web-console (2.3.0) lib/web_console/middleware.rb:28:in `block in call'
+  web-console (2.3.0) lib/web_console/middleware.rb:18:in `catch'
+  web-console (2.3.0) lib/web_console/middleware.rb:18:in `call'
+  actionpack (4.2.6) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.2.6) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.6) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.6) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.6) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.6) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.6) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.2.6) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.6.10) lib/rack/methodoverride.rb:22:in `call'
+  rack (1.6.10) lib/rack/runtime.rb:18:in `call'
+  activesupport (4.2.6) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  rack (1.6.10) lib/rack/lock.rb:17:in `call'
+  actionpack (4.2.6) lib/action_dispatch/middleware/static.rb:120:in `call'
+  rack (1.6.10) lib/rack/sendfile.rb:113:in `call'
+  railties (4.2.6) lib/rails/engine.rb:518:in `call'
+  railties (4.2.6) lib/rails/application.rb:165:in `call'
+  rack (1.6.10) lib/rack/lock.rb:17:in `call'
+  rack (1.6.10) lib/rack/content_length.rb:15:in `call'
+  rack (1.6.10) lib/rack/handler/webrick.rb:88:in `service'
+  /Users/nobuharumurata/.rbenv/versions/2.3.1/lib/ruby/2.3.0/webrick/httpserver.rb:140:in `service'
+  /Users/nobuharumurata/.rbenv/versions/2.3.1/lib/ruby/2.3.0/webrick/httpserver.rb:96:in `run'
+  /Users/nobuharumurata/.rbenv/versions/2.3.1/lib/ruby/2.3.0/webrick/server.rb:296:in `block in start_thread'
+
+
+  Rendered /Users/nobuharumurata/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_source.erb (9.9ms)
+  Rendered /Users/nobuharumurata/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (4.9ms)
+  Rendered /Users/nobuharumurata/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.1ms)
+  Rendered /Users/nobuharumurata/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (163.4ms)
+  Rendered /Users/nobuharumurata/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (0.5ms)
+  Rendered /Users/nobuharumurata/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.5ms)
+  Rendered /Users/nobuharumurata/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.4ms)
+  Rendered /Users/nobuharumurata/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (1.0ms)
+  Rendered /Users/nobuharumurata/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (145.4ms)
+  Rendered /Users/nobuharumurata/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (0.4ms)
+  Rendered /Users/nobuharumurata/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.5ms)
+  Rendered /Users/nobuharumurata/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (330.9ms)
+
+
+Started GET "/admin/authors" for ::1 at 2018-08-11 16:26:26 +0900
+Processing by Admin::AuthorsController#index as HTML
+  [1m[35m (1.2ms)[0m  SELECT COUNT(count_column) FROM (SELECT  1 AS count_column FROM "authors" LIMIT 30 OFFSET 0) subquery_for_count
+  [1m[36mAuthorBook Load (1.3ms)[0m  [1mSELECT "author_books".* FROM "author_books"[0m
+  [1m[35mBook Load (1.5ms)[0m  SELECT "books".* FROM "books"
+  Rendered /Users/nobuharumurata/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/bundler/gems/active_admin-c301ab126b3f/app/views/active_admin/resource/index.html.arb (332.5ms)
+Completed 200 OK in 381ms (Views: 360.4ms | ActiveRecord: 6.8ms)
+
+
+Started GET "/admin/author_books" for ::1 at 2018-08-11 16:26:34 +0900
+Processing by Admin::AuthorBooksController#index as HTML
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(count_column) FROM (SELECT  1 AS count_column FROM "author_books" LIMIT 30 OFFSET 0) subquery_for_count[0m
+  [1m[35mBook Load (0.1ms)[0m  SELECT "books".* FROM "books"
+  [1m[36mAuthor Load (0.2ms)[0m  [1mSELECT "authors".* FROM "authors"[0m
+  Rendered /Users/nobuharumurata/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/bundler/gems/active_admin-c301ab126b3f/app/views/active_admin/resource/index.html.arb (213.9ms)
+Completed 200 OK in 234ms (Views: 230.5ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/admin/author_books/new" for ::1 at 2018-08-11 16:26:39 +0900
+Processing by Admin::AuthorBooksController#new as HTML
+  [1m[35mBook Load (0.2ms)[0m  SELECT "books".* FROM "books"
+  [1m[36mAuthor Load (0.2ms)[0m  [1mSELECT "authors".* FROM "authors"[0m
+  Rendered /Users/nobuharumurata/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/bundler/gems/active_admin-c301ab126b3f/app/views/active_admin/resource/new.html.arb (202.8ms)
+Completed 200 OK in 227ms (Views: 218.3ms | ActiveRecord: 0.3ms)
+
+
+Started POST "/admin/author_books" for ::1 at 2018-08-11 16:26:45 +0900
+Processing by Admin::AuthorBooksController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"c0n7u7qFNSkT/2h3bXeSFLQVpjhTLbGgA7DwU8jaRrGj5n8pmQ7RuS4+KiFn7QMGUSQNWbLd5P+tSjD8b0QmtQ==", "author_book"=>{"book_id"=>"", "author_id"=>""}, "commit"=>"Create Author book"}
+Completed 500 Internal Server Error in 2ms (ActiveRecord: 0.0ms)
+
+ActiveModel::ForbiddenAttributesError (ActiveModel::ForbiddenAttributesError):
+  activemodel (4.2.6) lib/active_model/forbidden_attributes_protection.rb:21:in `sanitize_for_mass_assignment'
+  activerecord (4.2.6) lib/active_record/attribute_assignment.rb:33:in `assign_attributes'
+  /Users/nobuharumurata/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/bundler/gems/active_admin-c301ab126b3f/lib/active_admin/resource_controller/data_access.rb:289:in `assign_attributes'
+  /Users/nobuharumurata/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/bundler/gems/active_admin-c301ab126b3f/lib/active_admin/resource_controller/data_access.rb:118:in `build_resource'
+  inherited_resources (1.9.0) lib/inherited_resources/actions.rb:31:in `create'
+  actionpack (4.2.6) lib/action_controller/metal/implicit_render.rb:4:in `send_action'
+  actionpack (4.2.6) lib/abstract_controller/base.rb:198:in `process_action'
+  actionpack (4.2.6) lib/action_controller/metal/rendering.rb:10:in `process_action'
+  actionpack (4.2.6) lib/abstract_controller/callbacks.rb:20:in `block in process_action'
+  activesupport (4.2.6) lib/active_support/callbacks.rb:117:in `call'
+  activesupport (4.2.6) lib/active_support/callbacks.rb:555:in `block (2 levels) in compile'
+  activesupport (4.2.6) lib/active_support/callbacks.rb:505:in `call'
+  activesupport (4.2.6) lib/active_support/callbacks.rb:92:in `__run_callbacks__'
+  activesupport (4.2.6) lib/active_support/callbacks.rb:778:in `_run_process_action_callbacks'
+  activesupport (4.2.6) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (4.2.6) lib/abstract_controller/callbacks.rb:19:in `process_action'
+  actionpack (4.2.6) lib/action_controller/metal/rescue.rb:29:in `process_action'
+  actionpack (4.2.6) lib/action_controller/metal/instrumentation.rb:32:in `block in process_action'
+  activesupport (4.2.6) lib/active_support/notifications.rb:164:in `block in instrument'
+  activesupport (4.2.6) lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+  activesupport (4.2.6) lib/active_support/notifications.rb:164:in `instrument'
+  actionpack (4.2.6) lib/action_controller/metal/instrumentation.rb:30:in `process_action'
+  actionpack (4.2.6) lib/action_controller/metal/params_wrapper.rb:250:in `process_action'
+  activerecord (4.2.6) lib/active_record/railties/controller_runtime.rb:18:in `process_action'
+  actionpack (4.2.6) lib/abstract_controller/base.rb:137:in `process'
+  actionview (4.2.6) lib/action_view/rendering.rb:30:in `process'
+  actionpack (4.2.6) lib/action_controller/metal.rb:196:in `dispatch'
+  actionpack (4.2.6) lib/action_controller/metal/rack_delegation.rb:13:in `dispatch'
+  actionpack (4.2.6) lib/action_controller/metal.rb:237:in `block in action'
+  actionpack (4.2.6) lib/action_dispatch/routing/route_set.rb:74:in `dispatch'
+  actionpack (4.2.6) lib/action_dispatch/routing/route_set.rb:43:in `serve'
+  actionpack (4.2.6) lib/action_dispatch/journey/router.rb:43:in `block in serve'
+  actionpack (4.2.6) lib/action_dispatch/journey/router.rb:30:in `each'
+  actionpack (4.2.6) lib/action_dispatch/journey/router.rb:30:in `serve'
+  actionpack (4.2.6) lib/action_dispatch/routing/route_set.rb:817:in `call'
+  rack (1.6.10) lib/rack/etag.rb:24:in `call'
+  rack (1.6.10) lib/rack/conditionalget.rb:38:in `call'
+  rack (1.6.10) lib/rack/head.rb:13:in `call'
+  actionpack (4.2.6) lib/action_dispatch/middleware/params_parser.rb:27:in `call'
+  actionpack (4.2.6) lib/action_dispatch/middleware/flash.rb:260:in `call'
+  rack (1.6.10) lib/rack/session/abstract/id.rb:225:in `context'
+  rack (1.6.10) lib/rack/session/abstract/id.rb:220:in `call'
+  actionpack (4.2.6) lib/action_dispatch/middleware/cookies.rb:560:in `call'
+  activerecord (4.2.6) lib/active_record/query_cache.rb:36:in `call'
+  activerecord (4.2.6) lib/active_record/connection_adapters/abstract/connection_pool.rb:653:in `call'
+  activerecord (4.2.6) lib/active_record/migration.rb:377:in `call'
+  actionpack (4.2.6) lib/action_dispatch/middleware/callbacks.rb:29:in `block in call'
+  activesupport (4.2.6) lib/active_support/callbacks.rb:88:in `__run_callbacks__'
+  activesupport (4.2.6) lib/active_support/callbacks.rb:778:in `_run_call_callbacks'
+  activesupport (4.2.6) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (4.2.6) lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+  actionpack (4.2.6) lib/action_dispatch/middleware/reloader.rb:73:in `call'
+  actionpack (4.2.6) lib/action_dispatch/middleware/remote_ip.rb:78:in `call'
+  actionpack (4.2.6) lib/action_dispatch/middleware/debug_exceptions.rb:17:in `call'
+  web-console (2.3.0) lib/web_console/middleware.rb:28:in `block in call'
+  web-console (2.3.0) lib/web_console/middleware.rb:18:in `catch'
+  web-console (2.3.0) lib/web_console/middleware.rb:18:in `call'
+  actionpack (4.2.6) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.2.6) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.6) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.6) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.6) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.6) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.6) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.2.6) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.6.10) lib/rack/methodoverride.rb:22:in `call'
+  rack (1.6.10) lib/rack/runtime.rb:18:in `call'
+  activesupport (4.2.6) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  rack (1.6.10) lib/rack/lock.rb:17:in `call'
+  actionpack (4.2.6) lib/action_dispatch/middleware/static.rb:120:in `call'
+  rack (1.6.10) lib/rack/sendfile.rb:113:in `call'
+  railties (4.2.6) lib/rails/engine.rb:518:in `call'
+  railties (4.2.6) lib/rails/application.rb:165:in `call'
+  rack (1.6.10) lib/rack/lock.rb:17:in `call'
+  rack (1.6.10) lib/rack/content_length.rb:15:in `call'
+  rack (1.6.10) lib/rack/handler/webrick.rb:88:in `service'
+  /Users/nobuharumurata/.rbenv/versions/2.3.1/lib/ruby/2.3.0/webrick/httpserver.rb:140:in `service'
+  /Users/nobuharumurata/.rbenv/versions/2.3.1/lib/ruby/2.3.0/webrick/httpserver.rb:96:in `run'
+  /Users/nobuharumurata/.rbenv/versions/2.3.1/lib/ruby/2.3.0/webrick/server.rb:296:in `block in start_thread'
+
+
+  Rendered /Users/nobuharumurata/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_source.erb (4.7ms)
+  Rendered /Users/nobuharumurata/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.6ms)
+  Rendered /Users/nobuharumurata/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.3ms)
+  Rendered /Users/nobuharumurata/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (145.8ms)
+  Rendered /Users/nobuharumurata/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (0.6ms)
+  Rendered /Users/nobuharumurata/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.4ms)
+  Rendered /Users/nobuharumurata/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.6ms)
+  Rendered /Users/nobuharumurata/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.4ms)
+  Rendered /Users/nobuharumurata/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (138.8ms)
+  Rendered /Users/nobuharumurata/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (0.6ms)
+  Rendered /Users/nobuharumurata/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.7ms)
+  Rendered /Users/nobuharumurata/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (306.0ms)
+
+
+Started GET "/admin/authors" for ::1 at 2018-08-11 16:27:02 +0900
+Processing by Admin::AuthorsController#index as HTML
+  [1m[35m (0.2ms)[0m  SELECT COUNT(count_column) FROM (SELECT  1 AS count_column FROM "authors" LIMIT 30 OFFSET 0) subquery_for_count
+  [1m[36mAuthorBook Load (0.2ms)[0m  [1mSELECT "author_books".* FROM "author_books"[0m
+  [1m[35mBook Load (0.2ms)[0m  SELECT "books".* FROM "books"
+  Rendered /Users/nobuharumurata/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/bundler/gems/active_admin-c301ab126b3f/app/views/active_admin/resource/index.html.arb (179.7ms)
+Completed 200 OK in 197ms (Views: 194.2ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/admin/authors/new" for ::1 at 2018-08-11 16:27:03 +0900
+Processing by Admin::AuthorsController#new as HTML
+  Rendered /Users/nobuharumurata/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/bundler/gems/active_admin-c301ab126b3f/app/views/active_admin/resource/new.html.arb (174.8ms)
+Completed 200 OK in 193ms (Views: 186.8ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/admin/authors" for ::1 at 2018-08-11 16:27:10 +0900
+Processing by Admin::AuthorsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"saiWXrNVJ2jjeb01uFYsE6F1tbqQymhz/RvMzE7QsAVhBxLMkN7D+N64/2OyzL0BREQe23E6PSxT4Qxj6U7QAQ==", "author"=>{"name"=>"test", "description"=>"aeraeasfafae"}, "commit"=>"Create Author"}
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (2.2ms)[0m  INSERT INTO "authors" ("name", "description", "created_at", "updated_at") VALUES (?, ?, ?, ?)  [["name", "test"], ["description", "aeraeasfafae"], ["created_at", "2018-08-11 07:27:10.538687"], ["updated_at", "2018-08-11 07:27:10.538687"]]
+  [1m[36m (2.5ms)[0m  [1mcommit transaction[0m
+Redirected to http://localhost:3000/admin/authors/1
+Completed 302 Found in 96ms (ActiveRecord: 4.9ms)
+
+
+Started GET "/admin/authors/1" for ::1 at 2018-08-11 16:27:10 +0900
+Processing by Admin::AuthorsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mAuthor Load (0.2ms)[0m  SELECT  "authors".* FROM "authors" WHERE "authors"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36m (1.4ms)[0m  [1mSELECT COUNT(*) FROM "active_admin_comments" WHERE "active_admin_comments"."resource_type" = ? AND "active_admin_comments"."resource_id" = ? AND "active_admin_comments"."namespace" = ?[0m  [["resource_type", "Author"], ["resource_id", 1], ["namespace", "admin"]]
+  [1m[35m (0.2ms)[0m  SELECT COUNT(count_column) FROM (SELECT  1 AS count_column FROM "active_admin_comments" WHERE "active_admin_comments"."resource_type" = ? AND "active_admin_comments"."resource_id" = ? AND "active_admin_comments"."namespace" = ? LIMIT 25 OFFSET 0) subquery_for_count  [["resource_type", "Author"], ["resource_id", 1], ["namespace", "admin"]]
+  Rendered /Users/nobuharumurata/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/bundler/gems/active_admin-c301ab126b3f/app/views/active_admin/resource/show.html.arb (213.4ms)
+Completed 200 OK in 279ms (Views: 231.5ms | ActiveRecord: 2.2ms)
+
+
+Started GET "/admin/books" for ::1 at 2018-08-11 16:27:17 +0900
+Processing by Admin::BooksController#index as HTML
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(count_column) FROM (SELECT  1 AS count_column FROM "books" LIMIT 30 OFFSET 0) subquery_for_count[0m
+  [1m[35mAuthorBook Load (0.2ms)[0m  SELECT "author_books".* FROM "author_books"
+  [1m[36mAuthor Load (0.2ms)[0m  [1mSELECT "authors".* FROM "authors"[0m
+  Rendered /Users/nobuharumurata/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/bundler/gems/active_admin-c301ab126b3f/app/views/active_admin/resource/index.html.arb (169.0ms)
+Completed 200 OK in 190ms (Views: 187.3ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/admin/books/new" for ::1 at 2018-08-11 16:27:19 +0900
+Processing by Admin::BooksController#new as HTML
+  [1m[35mAuthor Load (0.2ms)[0m  SELECT "authors".* FROM "authors"
+  Rendered /Users/nobuharumurata/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/bundler/gems/active_admin-c301ab126b3f/app/views/active_admin/resource/new.html.arb (229.1ms)
+Completed 200 OK in 250ms (Views: 244.7ms | ActiveRecord: 0.2ms)
+
+
+Started POST "/admin/books" for ::1 at 2018-08-11 16:27:40 +0900
+Processing by Admin::BooksController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"lcBWEQWKNZ+1OQQHsvhbVbqGEpm9CPrVK2yaqL9LRz9Fb9KDJgHRD4j4RlG4YspHX7e5+Fz4r4qFlloHGNUnOw==", "book"=>{"title"=>"testbook", "isbn"=>"123345", "published_date(1i)"=>"2013", "published_date(2i)"=>"1", "published_date(3i)"=>"1", "author_books_attributes"=>{"0"=>{"author_id"=>"1"}}}, "commit"=>"Create Book"}
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (1.2ms)[0m  INSERT INTO "books" ("title", "isbn", "published_date", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["title", "testbook"], ["isbn", "123345"], ["published_date", "2013-01-01"], ["created_at", "2018-08-11 07:27:40.680349"], ["updated_at", "2018-08-11 07:27:40.680349"]]
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "author_books" ("author_id", "book_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["author_id", 1], ["book_id", 1], ["created_at", "2018-08-11 07:27:40.685116"], ["updated_at", "2018-08-11 07:27:40.685116"]]
+  [1m[35m (2.2ms)[0m  commit transaction
+Redirected to http://localhost:3000/admin/books/1
+Completed 302 Found in 96ms (ActiveRecord: 3.7ms)
+
+
+Started GET "/admin/books/1" for ::1 at 2018-08-11 16:27:40 +0900
+Processing by Admin::BooksController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mBook Load (0.3ms)[0m  [1mSELECT  "books".* FROM "books" WHERE "books"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "active_admin_comments" WHERE "active_admin_comments"."resource_type" = ? AND "active_admin_comments"."resource_id" = ? AND "active_admin_comments"."namespace" = ?  [["resource_type", "Book"], ["resource_id", 1], ["namespace", "admin"]]
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(count_column) FROM (SELECT  1 AS count_column FROM "active_admin_comments" WHERE "active_admin_comments"."resource_type" = ? AND "active_admin_comments"."resource_id" = ? AND "active_admin_comments"."namespace" = ? LIMIT 25 OFFSET 0) subquery_for_count[0m  [["resource_type", "Book"], ["resource_id", 1], ["namespace", "admin"]]
+  Rendered /Users/nobuharumurata/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/bundler/gems/active_admin-c301ab126b3f/app/views/active_admin/resource/show.html.arb (187.3ms)
+Completed 200 OK in 203ms (Views: 200.9ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/admin/author_books" for ::1 at 2018-08-11 16:27:45 +0900
+Processing by Admin::AuthorBooksController#index as HTML
+  [1m[35m (0.2ms)[0m  SELECT COUNT(count_column) FROM (SELECT  1 AS count_column FROM "author_books" LIMIT 30 OFFSET 0) subquery_for_count
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT COUNT(count_column) FROM (SELECT  1 AS count_column FROM "author_books" LIMIT 30 OFFSET 0) subquery_for_count[0m
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "author_books"
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT COUNT(count_column) FROM (SELECT  1 AS count_column FROM "author_books" LIMIT 30 OFFSET 0) subquery_for_count[0m
+  [1m[35mAuthorBook Load (0.3ms)[0m  SELECT  "author_books".* FROM "author_books"  ORDER BY "author_books"."id" desc LIMIT 30 OFFSET 0
+  [1m[36mAuthor Load (0.1ms)[0m  [1mSELECT  "authors".* FROM "authors" WHERE "authors"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mBook Load (0.1ms)[0m  SELECT  "books".* FROM "books" WHERE "books"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mBook Load (0.2ms)[0m  [1mSELECT "books".* FROM "books"[0m
+  [1m[35mAuthor Load (0.2ms)[0m  SELECT "authors".* FROM "authors"
+  Rendered /Users/nobuharumurata/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/bundler/gems/active_admin-c301ab126b3f/app/views/active_admin/resource/index.html.arb (170.0ms)
+Completed 200 OK in 187ms (Views: 184.4ms | ActiveRecord: 1.3ms)
+
+
+Started GET "/assets/active_admin/orderable-29374dbb55b0012d78a37c614d573bb3474f0779849b478a147d0f1845ca6617.png" for ::1 at 2018-08-11 16:27:45 +0900
+
+
+Started GET "/admin/author_books/new" for ::1 at 2018-08-11 16:28:16 +0900
+Processing by Admin::AuthorBooksController#new as HTML
+  [1m[36mBook Load (0.2ms)[0m  [1mSELECT "books".* FROM "books"[0m
+  [1m[35mAuthor Load (0.2ms)[0m  SELECT "authors".* FROM "authors"
+  Rendered /Users/nobuharumurata/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/bundler/gems/active_admin-c301ab126b3f/app/views/active_admin/resource/new.html.arb (237.1ms)
+Completed 200 OK in 256ms (Views: 254.6ms | ActiveRecord: 0.4ms)
+
+
+Started POST "/admin/author_books" for ::1 at 2018-08-11 16:28:22 +0900
+Processing by Admin::AuthorBooksController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"V53EjSSHPP4vgQf6G+jRoYr/EbIS9XBiXO1LSdTgShqHMkAfBwzYbhJARawRckCzb8660/MFJT3yF4vmc34qHg==", "author_book"=>{"book_id"=>"1", "author_id"=>"1"}, "commit"=>"Create Author book"}
+Completed 500 Internal Server Error in 3ms (ActiveRecord: 0.0ms)
+
+ActiveModel::ForbiddenAttributesError (ActiveModel::ForbiddenAttributesError):
+  activemodel (4.2.6) lib/active_model/forbidden_attributes_protection.rb:21:in `sanitize_for_mass_assignment'
+  activerecord (4.2.6) lib/active_record/attribute_assignment.rb:33:in `assign_attributes'
+  /Users/nobuharumurata/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/bundler/gems/active_admin-c301ab126b3f/lib/active_admin/resource_controller/data_access.rb:289:in `assign_attributes'
+  /Users/nobuharumurata/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/bundler/gems/active_admin-c301ab126b3f/lib/active_admin/resource_controller/data_access.rb:118:in `build_resource'
+  inherited_resources (1.9.0) lib/inherited_resources/actions.rb:31:in `create'
+  actionpack (4.2.6) lib/action_controller/metal/implicit_render.rb:4:in `send_action'
+  actionpack (4.2.6) lib/abstract_controller/base.rb:198:in `process_action'
+  actionpack (4.2.6) lib/action_controller/metal/rendering.rb:10:in `process_action'
+  actionpack (4.2.6) lib/abstract_controller/callbacks.rb:20:in `block in process_action'
+  activesupport (4.2.6) lib/active_support/callbacks.rb:117:in `call'
+  activesupport (4.2.6) lib/active_support/callbacks.rb:555:in `block (2 levels) in compile'
+  activesupport (4.2.6) lib/active_support/callbacks.rb:505:in `call'
+  activesupport (4.2.6) lib/active_support/callbacks.rb:92:in `__run_callbacks__'
+  activesupport (4.2.6) lib/active_support/callbacks.rb:778:in `_run_process_action_callbacks'
+  activesupport (4.2.6) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (4.2.6) lib/abstract_controller/callbacks.rb:19:in `process_action'
+  actionpack (4.2.6) lib/action_controller/metal/rescue.rb:29:in `process_action'
+  actionpack (4.2.6) lib/action_controller/metal/instrumentation.rb:32:in `block in process_action'
+  activesupport (4.2.6) lib/active_support/notifications.rb:164:in `block in instrument'
+  activesupport (4.2.6) lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+  activesupport (4.2.6) lib/active_support/notifications.rb:164:in `instrument'
+  actionpack (4.2.6) lib/action_controller/metal/instrumentation.rb:30:in `process_action'
+  actionpack (4.2.6) lib/action_controller/metal/params_wrapper.rb:250:in `process_action'
+  activerecord (4.2.6) lib/active_record/railties/controller_runtime.rb:18:in `process_action'
+  actionpack (4.2.6) lib/abstract_controller/base.rb:137:in `process'
+  actionview (4.2.6) lib/action_view/rendering.rb:30:in `process'
+  actionpack (4.2.6) lib/action_controller/metal.rb:196:in `dispatch'
+  actionpack (4.2.6) lib/action_controller/metal/rack_delegation.rb:13:in `dispatch'
+  actionpack (4.2.6) lib/action_controller/metal.rb:237:in `block in action'
+  actionpack (4.2.6) lib/action_dispatch/routing/route_set.rb:74:in `dispatch'
+  actionpack (4.2.6) lib/action_dispatch/routing/route_set.rb:43:in `serve'
+  actionpack (4.2.6) lib/action_dispatch/journey/router.rb:43:in `block in serve'
+  actionpack (4.2.6) lib/action_dispatch/journey/router.rb:30:in `each'
+  actionpack (4.2.6) lib/action_dispatch/journey/router.rb:30:in `serve'
+  actionpack (4.2.6) lib/action_dispatch/routing/route_set.rb:817:in `call'
+  rack (1.6.10) lib/rack/etag.rb:24:in `call'
+  rack (1.6.10) lib/rack/conditionalget.rb:38:in `call'
+  rack (1.6.10) lib/rack/head.rb:13:in `call'
+  actionpack (4.2.6) lib/action_dispatch/middleware/params_parser.rb:27:in `call'
+  actionpack (4.2.6) lib/action_dispatch/middleware/flash.rb:260:in `call'
+  rack (1.6.10) lib/rack/session/abstract/id.rb:225:in `context'
+  rack (1.6.10) lib/rack/session/abstract/id.rb:220:in `call'
+  actionpack (4.2.6) lib/action_dispatch/middleware/cookies.rb:560:in `call'
+  activerecord (4.2.6) lib/active_record/query_cache.rb:36:in `call'
+  activerecord (4.2.6) lib/active_record/connection_adapters/abstract/connection_pool.rb:653:in `call'
+  activerecord (4.2.6) lib/active_record/migration.rb:377:in `call'
+  actionpack (4.2.6) lib/action_dispatch/middleware/callbacks.rb:29:in `block in call'
+  activesupport (4.2.6) lib/active_support/callbacks.rb:88:in `__run_callbacks__'
+  activesupport (4.2.6) lib/active_support/callbacks.rb:778:in `_run_call_callbacks'
+  activesupport (4.2.6) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (4.2.6) lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+  actionpack (4.2.6) lib/action_dispatch/middleware/reloader.rb:73:in `call'
+  actionpack (4.2.6) lib/action_dispatch/middleware/remote_ip.rb:78:in `call'
+  actionpack (4.2.6) lib/action_dispatch/middleware/debug_exceptions.rb:17:in `call'
+  web-console (2.3.0) lib/web_console/middleware.rb:28:in `block in call'
+  web-console (2.3.0) lib/web_console/middleware.rb:18:in `catch'
+  web-console (2.3.0) lib/web_console/middleware.rb:18:in `call'
+  actionpack (4.2.6) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.2.6) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.6) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.6) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.6) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.6) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.6) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.2.6) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.6.10) lib/rack/methodoverride.rb:22:in `call'
+  rack (1.6.10) lib/rack/runtime.rb:18:in `call'
+  activesupport (4.2.6) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  rack (1.6.10) lib/rack/lock.rb:17:in `call'
+  actionpack (4.2.6) lib/action_dispatch/middleware/static.rb:120:in `call'
+  rack (1.6.10) lib/rack/sendfile.rb:113:in `call'
+  railties (4.2.6) lib/rails/engine.rb:518:in `call'
+  railties (4.2.6) lib/rails/application.rb:165:in `call'
+  rack (1.6.10) lib/rack/lock.rb:17:in `call'
+  rack (1.6.10) lib/rack/content_length.rb:15:in `call'
+  rack (1.6.10) lib/rack/handler/webrick.rb:88:in `service'
+  /Users/nobuharumurata/.rbenv/versions/2.3.1/lib/ruby/2.3.0/webrick/httpserver.rb:140:in `service'
+  /Users/nobuharumurata/.rbenv/versions/2.3.1/lib/ruby/2.3.0/webrick/httpserver.rb:96:in `run'
+  /Users/nobuharumurata/.rbenv/versions/2.3.1/lib/ruby/2.3.0/webrick/server.rb:296:in `block in start_thread'
+
+
+  Rendered /Users/nobuharumurata/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_source.erb (5.2ms)
+  Rendered /Users/nobuharumurata/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.7ms)
+  Rendered /Users/nobuharumurata/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (2.0ms)
+  Rendered /Users/nobuharumurata/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (143.9ms)
+  Rendered /Users/nobuharumurata/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (0.7ms)
+  Rendered /Users/nobuharumurata/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.6ms)
+  Rendered /Users/nobuharumurata/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.4ms)
+  Rendered /Users/nobuharumurata/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.5ms)
+  Rendered /Users/nobuharumurata/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (136.0ms)
+  Rendered /Users/nobuharumurata/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (0.4ms)
+  Rendered /Users/nobuharumurata/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.6ms)
+  Rendered /Users/nobuharumurata/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (306.8ms)
+
+
+Started POST "/admin/author_books" for ::1 at 2018-08-11 16:30:34 +0900
+Processing by Admin::AuthorBooksController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"V53EjSSHPP4vgQf6G+jRoYr/EbIS9XBiXO1LSdTgShqHMkAfBwzYbhJARawRckCzb8660/MFJT3yF4vmc34qHg==", "author_book"=>{"book_id"=>"1", "author_id"=>"1"}, "commit"=>"Create Author book"}
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (1.8ms)[0m  INSERT INTO "author_books" ("author_id", "book_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)  [["author_id", 1], ["book_id", 1], ["created_at", "2018-08-11 07:30:34.203624"], ["updated_at", "2018-08-11 07:30:34.203624"]]
+  [1m[36m (4.4ms)[0m  [1mcommit transaction[0m
+Redirected to http://localhost:3000/admin/author_books/2
+Completed 302 Found in 87ms (ActiveRecord: 7.1ms)
+
+
+Started GET "/admin/author_books/2" for ::1 at 2018-08-11 16:30:34 +0900
+Processing by Admin::AuthorBooksController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[35mAuthorBook Load (0.2ms)[0m  SELECT  "author_books".* FROM "author_books" WHERE "author_books"."id" = ? LIMIT 1  [["id", 2]]
+  [1m[36mAuthor Load (0.4ms)[0m  [1mSELECT  "authors".* FROM "authors" WHERE "authors"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mBook Load (1.3ms)[0m  SELECT  "books".* FROM "books" WHERE "books"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36m (1.3ms)[0m  [1mSELECT COUNT(*) FROM "active_admin_comments" WHERE "active_admin_comments"."resource_type" = ? AND "active_admin_comments"."resource_id" = ? AND "active_admin_comments"."namespace" = ?[0m  [["resource_type", "AuthorBook"], ["resource_id", 2], ["namespace", "admin"]]
+  [1m[35m (0.3ms)[0m  SELECT COUNT(count_column) FROM (SELECT  1 AS count_column FROM "active_admin_comments" WHERE "active_admin_comments"."resource_type" = ? AND "active_admin_comments"."resource_id" = ? AND "active_admin_comments"."namespace" = ? LIMIT 25 OFFSET 0) subquery_for_count  [["resource_type", "AuthorBook"], ["resource_id", 2], ["namespace", "admin"]]
+  Rendered /Users/nobuharumurata/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/bundler/gems/active_admin-c301ab126b3f/app/views/active_admin/resource/show.html.arb (278.9ms)
+Completed 200 OK in 295ms (Views: 288.3ms | ActiveRecord: 4.1ms)
